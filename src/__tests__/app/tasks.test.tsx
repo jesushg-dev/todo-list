@@ -1,9 +1,9 @@
 import Button from '@/components/ui/Button';
 import { FlatList } from 'react-native';
 import renderer from 'react-test-renderer';
-import AddTaskModal from '../../../components/AddTaskModal';
-import { renderWithProviders } from '../../../utils/test-utils';
-import TasksScreen from '../../../app/tasks';
+import AddTaskModal from '../../components/AddTaskModal';
+import { renderWithProviders } from '../../utils/test-utils';
+import TasksScreen from '../../app/tasks';
 
 jest.mock('react-native-safe-area-context', () => ({
   SafeAreaView: ({ children }: any) => children

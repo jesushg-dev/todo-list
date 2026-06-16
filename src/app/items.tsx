@@ -10,7 +10,7 @@ import Skeleton from '@/components/ui/Skeleton';
 import { Spacing } from '@/constants/theme';
 import { useGetElementsQuery } from '../services/api';
 
-export default function ListadoScreen() {
+export default function ItemsScreen() {
   const { data: items = [], isLoading, isError, refetch } = useGetElementsQuery();
 
   if (isLoading) {

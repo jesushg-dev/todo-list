@@ -34,7 +34,7 @@ export default function HomeScreen() {
             <Button
               variant="secondary"
               title="List"
-              onPress={() => router.push('/listado')}
+              onPress={() => router.push('/items')}
               style={styles.actionButton}
             />
           </View>

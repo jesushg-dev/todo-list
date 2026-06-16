@@ -4,7 +4,7 @@ jest.mock('@reduxjs/toolkit/query/react', () => ({
     const builder = { query: (config: any) => config };
     const endpoints = options.endpoints(builder);
     return {
-      reducerPath: 'listadoApi',
+      reducerPath: 'itemsApi',
       reducer: jest.fn(() => ({})),
       middleware: jest.fn(() => (next: any) => (action: any) => next(action)),
       endpoints,

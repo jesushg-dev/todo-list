@@ -1,56 +1,70 @@
-# Welcome to your Expo app 👋
+# Todo List Application
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native application built with Expo for organizing daily tasks and exploring remote items, featuring robust state management, modern navigation, and a pixel-perfect UI.
 
-## Get started
+## Features
 
-1. Install dependencies
+* Task Management: Create and view daily tasks with seamless Redux state management.
+* Remote Data Integration: Browse external items fetching from remote APIs using RTK Query for automatic caching and re-fetching.
+* Modern UI/UX: 
+  * Dynamic Skeleton Loading animations for empty states instead of generic spinners.
+  * Interactive Modal validations with inline visual feedback.
+  * Consistent theming and design tokens (Spacing, Typography, Colors).
+* Robust Architecture: Fully unit-tested components, reducers, and hooks using Jest and react-test-renderer with a professional testing setup.
 
-   ```bash
-   npm install
-   ```
+## Getting Started
 
-2. Start the app
+### Prerequisites
 
-   ```bash
-   npx expo start
-   ```
+* Node.js (v18 or higher)
+* npm or yarn
+* Expo Go app on your physical device (iOS/Android) or an Emulator/Simulator
 
-In the output, you'll find options to open the app in a
+### Installation
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. Clone the repository and install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Start the Expo development server:
 
-### Other setup steps
+```bash
+npx expo start
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+* Press 'a' to run on Android Emulator.
+* Press 'i' to run on iOS Simulator.
+* Or scan the QR code with the Expo Go app on your physical device.
 
-## Learn more
+### Running Tests
 
-To learn more about developing your project with Expo, look at the following resources:
+Run the full test suite with coverage report:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm run test:coverage
+```
 
-## Join the community
+## Architecture
 
-Join our community of developers creating universal apps.
+Here is a breakdown of the architectural and technical choices powering the application:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 1. Redux Toolkit (RTK) and RTK Query
+For state management, the application leverages Redux Toolkit instead of basic Context API to ensure maximum performance and scalability:
+* Performance: Context API triggers re-renders on all consuming components when any part of the state changes. Redux selectively updates only the components listening to specific slices.
+* RTK Query: Provides out-of-the-box caching, loading state management (isLoading, isError), and request deduplication. It simplifies API integrations and network lifecycle management.
+* Predictable Testing: The state architecture enables easy mocking and robust unit testing for UI components using custom render wrappers.
+
+### 2. FlatList Optimization
+For rendering dynamic lists, FlatList is used to ensure buttery-smooth scrolling performance.
+* Memory Virtualization: FlatList only renders items currently visible on the screen (plus a small buffer). This allows the application to handle lists of thousands of items without dropping frames or crashing due to memory limits.
+
+### 3. Expo Router (File-based Navigation)
+The application utilizes Expo Router to handle complex navigation flows seamlessly.
+* Discoverability: The route structure directly mirrors the file system (src/app/index.tsx, src/app/items.tsx), making the codebase highly intuitive and scalable for growing teams.
+* Deep Linking: Native deep linking is supported out of the box without complex configuration maps.
+
+### 4. UX/UI Polish
+* Animated Skeleton Loaders: Instead of a static ActivityIndicator, screens use custom Skeleton components with an Animated.loop that pulses opacity. This prevents the layout shifting abruptly when network requests resolve.
+* Inline Validation: Forms validate input directly where the user interacts, displaying inline red errors instead of silently disabling buttons, providing clear feedback which is a core principle of good UX.

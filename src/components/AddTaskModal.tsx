@@ -22,14 +22,17 @@ interface AddTaskModalProps {
 
 export default function AddTaskModal({ visible, onClose, onAdd }: AddTaskModalProps) {
   const [text, setText] = useState('');
+  const [showError, setShowError] = useState(false);
   const theme = useTheme();
 
   const handleAdd = () => {
     if (text.trim().length === 0) {
+      setShowError(true);
       return;
     }
     onAdd(text.trim());
     setText('');
+    setShowError(false);
     onClose();
   };
 
@@ -65,10 +68,19 @@ export default function AddTaskModal({ visible, onClose, onAdd }: AddTaskModalPr
                 placeholder="New Task Name"
                 placeholderTextColor={theme.textSecondary}
                 value={text}
-                onChangeText={setText}
+                onChangeText={(val) => {
+                  setText(val);
+                  if (showError) setShowError(false);
+                }}
                 autoFocus
                 maxLength={100}
               />
+
+              {showError && (
+                <ThemedText style={styles.errorText}>
+                  Task description cannot be empty
+                </ThemedText>
+              )}
 
               <View style={styles.buttonRow}>
                 <Button
@@ -138,5 +150,10 @@ const styles = StyleSheet.create({
     minHeight: 40,
     paddingVertical: Spacing.two,
     paddingHorizontal: Spacing.three,
+  },
+  errorText: {
+    color: '#EF4444',
+    fontSize: 14,
+    marginTop: -Spacing.two,
   },
 });

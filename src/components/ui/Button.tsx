@@ -55,7 +55,7 @@ export default function Button({
       style={({ pressed }) => [
         styles.button,
         variantStyles.container,
-        disabled && { backgroundColor: theme.backgroundSelected, borderColor: 'transparent', opacity: 0.5 },
+        disabled && { opacity: 0.4 },
         pressed && !disabled && styles.pressed,
         style as ViewStyle,
       ]}

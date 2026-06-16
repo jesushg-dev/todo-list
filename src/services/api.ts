@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RemoteElement } from '../types';
 
-export const listadoApi = createApi({
-  reducerPath: 'listadoApi',
+export const itemsApi = createApi({
+  reducerPath: 'itemsApi',
   baseQuery: fetchBaseQuery({ baseUrl: process.env.EXPO_PUBLIC_API_URL }),
   endpoints: (builder) => ({
     getElements: builder.query<RemoteElement[], void>({
@@ -11,4 +11,4 @@ export const listadoApi = createApi({
   }),
 });
 
-export const { useGetElementsQuery } = listadoApi;
+export const { useGetElementsQuery } = itemsApi;

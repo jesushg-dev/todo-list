@@ -1,6 +1,6 @@
 import * as ReactNative from 'react-native';
 import renderer from 'react-test-renderer';
-import RootLayout from '../../../app/_layout';
+import RootLayout from '../../app/_layout';
 
 jest.mock('expo-router', () => ({
   Stack: Object.assign(({ children }: any) => children, { Screen: () => null }),
@@ -14,7 +14,7 @@ jest.mock('react-redux', () => ({
 jest.mock('@/components/animated-icon', () => ({
   AnimatedSplashOverlay: 'AnimatedSplashOverlay',
 }));
-jest.mock('../../../store/store', () => ({
+jest.mock('../../store/store', () => ({
   store: {},
 }));
 

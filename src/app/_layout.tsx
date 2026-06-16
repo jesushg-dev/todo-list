@@ -14,7 +14,7 @@ export default function RootLayout() {
         <Stack>
           <Stack.Screen name="index" options={{ title: 'Home', headerShown: false }} />
           <Stack.Screen name="tasks" options={{ title: 'Tasks' }} />
-          <Stack.Screen name="listado" options={{ title: 'Listado' }} />
+          <Stack.Screen name="items" options={{ title: 'Items' }} />
         </Stack>
       </ThemeProvider>
     </Provider>

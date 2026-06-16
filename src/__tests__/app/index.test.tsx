@@ -1,7 +1,7 @@
 import Button from '@/components/ui/Button';
 import { router } from 'expo-router';
 import renderer from 'react-test-renderer';
-import HomeScreen from '../../../app/index';
+import HomeScreen from '../../app/index';
 
 jest.mock('expo-router', () => ({
   router: { push: jest.fn() }
@@ -42,6 +42,6 @@ describe('HomeScreen', () => {
     renderer.act(() => {
       buttons[1].props.onPress();
     });
-    expect(router.push).toHaveBeenCalledWith('/listado');
+    expect(router.push).toHaveBeenCalledWith('/items');
   });
 });

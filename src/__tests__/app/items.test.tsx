@@ -1,15 +1,15 @@
 import ErrorState from '@/components/ui/ErrorState';
 import { FlatList } from 'react-native';
 import renderer from 'react-test-renderer';
-import { useGetElementsQuery } from '../../../services/api';
-import { renderWithProviders } from '../../../utils/test-utils';
-import ItemsScreen from '../../../app/listado';
+import { useGetElementsQuery } from '../../services/api';
+import { renderWithProviders } from '../../utils/test-utils';
+import ItemsScreen from '../../app/items';
 
 jest.mock('react-native-safe-area-context', () => ({
   SafeAreaView: ({ children }: any) => children
 }));
-jest.mock('../../../services/api', () => {
-  const actual = jest.requireActual('../../../services/api');
+jest.mock('../../services/api', () => {
+  const actual = jest.requireActual('../../services/api');
   return {
     ...actual,
     useGetElementsQuery: jest.fn()

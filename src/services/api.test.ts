@@ -12,19 +12,19 @@ jest.mock('@reduxjs/toolkit/query/react', () => ({
   fetchBaseQuery: jest.fn(),
 }));
 
-import { listadoApi, useGetElementsQuery } from './api';
+import { itemsApi, useGetElementsQuery } from './api';
 
-describe('listadoApi', () => {
+describe('itemsApi', () => {
   it('is defined with correct reducer path', () => {
-    expect(listadoApi.reducerPath).toBe('listadoApi');
+    expect(itemsApi.reducerPath).toBe('itemsApi');
   });
 
   it('exports hooks', () => {
     expect(useGetElementsQuery).toBeDefined();
   });
 
-  it('has getElements endpoint that queries elements', () => {
-    const endpoint = listadoApi.endpoints.getElements as any;
+  it('exports correctly getElements endpoint', () => {
+    const endpoint = itemsApi.endpoints.getElements as any;
     expect(endpoint.query()).toBe('elements');
   });
 });
