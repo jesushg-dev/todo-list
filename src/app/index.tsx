@@ -1,17 +1,14 @@
-import React from 'react';
-import { StyleSheet, Pressable, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { AnimatedIcon } from '@/components/animated-icon';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Spacing, MaxContentWidth } from '@/constants/theme';
-import { useTheme } from '@/hooks/use-theme';
-import { AnimatedIcon } from '@/components/animated-icon';
+import Button from '@/components/ui/Button';
+import { MaxContentWidth, Spacing } from '@/constants/theme';
 
 export default function HomeScreen() {
-  const theme = useTheme();
-
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
@@ -27,31 +24,19 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.buttonContainer}>
-            <Pressable
-              style={({ pressed }) => [
-                styles.button,
-                { backgroundColor: theme.backgroundElement },
-                pressed && styles.buttonPressed,
-              ]}
+            <Button
+              variant="secondary"
+              title="Tasks"
               onPress={() => router.push('/tasks')}
-            >
-              <ThemedText style={styles.buttonText} type="subtitle">
-                Tasks
-              </ThemedText>
-            </Pressable>
+              style={styles.actionButton}
+            />
 
-            <Pressable
-              style={({ pressed }) => [
-                styles.button,
-                { backgroundColor: theme.backgroundElement },
-                pressed && styles.buttonPressed,
-              ]}
+            <Button
+              variant="secondary"
+              title="List"
               onPress={() => router.push('/listado')}
-            >
-              <ThemedText style={styles.buttonText} type="subtitle">
-                List
-              </ThemedText>
-            </Pressable>
+              style={styles.actionButton}
+            />
           </View>
         </View>
       </SafeAreaView>
@@ -94,24 +79,11 @@ const styles = StyleSheet.create({
     maxWidth: 300,
     gap: Spacing.three,
   },
-  button: {
-    paddingVertical: Spacing.three,
-    paddingHorizontal: Spacing.four,
-    borderRadius: Spacing.three,
-    alignItems: 'center',
-    justifyContent: 'center',
+  actionButton: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
     shadowRadius: 8,
     elevation: 2,
-  },
-  buttonPressed: {
-    opacity: 0.8,
-    transform: [{ scale: 0.98 }],
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: '600',
   },
 });
