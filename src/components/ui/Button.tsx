@@ -30,8 +30,8 @@ export default function Button({
   const variantStyles = useMemo(() => {
     const stylesMap: Record<string, { container: StyleProp<ViewStyle>; text: StyleProp<TextStyle> }> = {
       primary: {
-        container: { backgroundColor: isDark ? '#1A75D2' : '#208AEF' },
-        text: { color: '#ffffff' },
+        container: { backgroundColor: theme.primary },
+        text: { color: theme.primaryForeground },
       },
       secondary: {
         container: { backgroundColor: theme.backgroundElement },
@@ -55,7 +55,7 @@ export default function Button({
       style={({ pressed }) => [
         styles.button,
         variantStyles.container,
-        disabled && (isDark ? styles.disabledDark : styles.disabledLight),
+        disabled && { backgroundColor: theme.backgroundSelected, borderColor: 'transparent', opacity: 0.5 },
         pressed && !disabled && styles.pressed,
         style as ViewStyle,
       ]}
@@ -85,15 +85,5 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.8,
     transform: [{ scale: 0.98 }],
-  },
-  disabledLight: {
-    backgroundColor: '#B0B4BA',
-    borderColor: 'transparent',
-    opacity: 0.5,
-  },
-  disabledDark: {
-    backgroundColor: '#4A4D53',
-    borderColor: 'transparent',
-    opacity: 0.5,
   },
 });
